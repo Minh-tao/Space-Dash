@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{85979305-D5F4-D854-BDA8-AB1C27E731CC}</ProjectGuid>
+    <ProjectGuid>{1F5A6398-C72F-546F-CE85-EB63267DFCB4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,12 +58,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Marine.cs" />
     <Compile Include="Assets\Scripts\SmallProjectile.cs" />
+    <Compile Include="Assets\Scripts\Slash.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Slash.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\info.txt" />
