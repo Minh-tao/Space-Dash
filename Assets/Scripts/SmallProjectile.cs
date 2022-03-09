@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class SmallProjectile : MonoBehaviour
 {
-    [SerializeField]
-    private int damage;
-    [SerializeField]
-    private float playerAttackCooldown;
-    [SerializeField]
-    private float moveSpeed;
-    [SerializeField]
-    private float timeBeforeDespawning;
-    private const string PROJ_SMALL_PLAYER = "Small Projectile (Player)";
-    private const string ENEMY = "Enemy";
+    [SerializeField] private int damage;
+    [SerializeField] private float playerAttackCooldown;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float timeBeforeDespawning;
 
     private Vector3 lookRight = Vector3.zero;
     private Vector3 lookLeft = Vector3.up * 180f;
@@ -21,7 +15,7 @@ public class SmallProjectile : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(Despawn());
+        StartCoroutine(DelayedDespawn());
         body = GetComponent<Rigidbody2D>();
     }
 
@@ -41,7 +35,7 @@ public class SmallProjectile : MonoBehaviour
             body.velocity = new Vector2(-moveSpeed, body.velocity.y);
         }
     }
-    protected IEnumerator Despawn()
+    protected IEnumerator DelayedDespawn()
     {
         yield return new WaitForSeconds(timeBeforeDespawning);
         Destroy(gameObject);

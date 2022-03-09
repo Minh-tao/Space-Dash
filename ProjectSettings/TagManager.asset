@@ -11,6 +11,9 @@ TagManager:
   - Terrain
   - Ground
   - Health Bar
+  - Melee Attack (Player)
+  - Melee Attack (Enemy)
+  - Melee Attack
   layers:
   - Default
   - TransparentFX
@@ -59,6 +62,9 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 1758744929
+    locked: 0
+  - name: Melee Attacks
+    uniqueID: 884184825
     locked: 0
   - name: UI
     uniqueID: 1503072679

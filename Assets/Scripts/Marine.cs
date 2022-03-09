@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Marine : Enemy
 {
-    protected const float BURST_GAP_MIN = 0.08f;
-    protected const float BURST_GAP_MAX = 0.13f;
+    protected const float BURST_GAP = 0.1f;
+    protected const int BURST_COUNT = 3;
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -17,11 +22,11 @@ public class Marine : Enemy
     }
     protected override IEnumerator Attack()
     {
-        Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
-        yield return new WaitForSeconds(Random.Range(BURST_GAP_MIN, BURST_GAP_MAX));
-        Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
-        yield return new WaitForSeconds(Random.Range(BURST_GAP_MIN, BURST_GAP_MAX));
-        Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
+        for (int i = 1; i <= BURST_COUNT; i++)
+        {
+            Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
+            yield return new WaitForSeconds(BURST_GAP);
+        }
         StartCoroutine(AttackReady());
     }
 }

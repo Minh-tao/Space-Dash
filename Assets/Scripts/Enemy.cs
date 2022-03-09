@@ -9,8 +9,6 @@ abstract public class Enemy : MonoBehaviour
     [SerializeField]
     protected float attackCooldownMax;
     [SerializeField]
-    protected int contactDamage;
-    [SerializeField]
     protected int health;
     [SerializeField]
     protected float moveSpeed;
@@ -21,14 +19,11 @@ abstract public class Enemy : MonoBehaviour
     protected Rigidbody2D body;
     protected Animator anim;
 
+    protected Vector3 lookRight = Vector3.zero;
+    protected Vector3 lookLeft = Vector3.up * 180f;
     private const string ANIM_IS_DEAD = "isDead";
     private const string TAG_SMALL_PROJ = "Small Projectile (Player)";
-
-    private void Awake()
-    {
-        body = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-    }
+    private const string TAG_PLAYER = "Player";
 
     protected abstract IEnumerator Attack();
 
@@ -38,17 +33,17 @@ abstract public class Enemy : MonoBehaviour
         readyToAttack = true;
     }
 
-    public int GetContactDamage()
-    {
-        return contactDamage;
-    }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag(TAG_SMALL_PROJ))
         {
             SmallProjectile proj = col.GetComponent<SmallProjectile>();
             TakeDamage(proj.GetDamage());
+        }
+        if (col.gameObject.CompareTag(TAG_PLAYER))
+        {
+            Player playerMelee = col.GetComponent<Player>();
+            TakeDamage(playerMelee.GetMeleeDamage());
         }
     }
 
